@@ -20,6 +20,8 @@
             }
 
             that.set("isLoggedIn", true);
+            
+            app.application.navigate("views/main.html");
         },
 
         onLogout: function () {

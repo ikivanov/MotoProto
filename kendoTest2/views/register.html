@@ -1,0 +1,17 @@
+<div id="register-view"
+    data-role="view"
+    data-title="Register"
+    data-model="app.registerService.viewModel">
+
+    <h1>[App Title comes here]</h1>
+    <h3>[place a whole screen pic here]</h3>
+    
+    <ul data-role="listview" data-style="inset" data-bind="invisible: isLoggedIn">
+        <li>
+            <input id="register" type="button" data-role="button" data-bind="click: onRegisterWithFacebook" value="Register with Facebook" class="login-button" />
+        </li>
+        <li>
+            <input id="login" type="button" data-role="button" data-bind="click: onLogin" value="Login" class="login-button" />
+        </li>
+    </ul>
+</div>
