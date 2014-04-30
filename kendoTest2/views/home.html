@@ -1,7 +1,23 @@
 <!--Home View-->
 <div id="tabstrip-home"
     data-role="view"
-    data-title="Home">
+    data-title="Home"
+    data-model="app.homeService.viewModel">
     
     <span>This is main view where you see your posts and the posts of the people you follow</span>
+    <input id="reload" type="submit" data-role="button" data-bind="click: onReload" value="Reload" class="login-button" />
+
+	<ul data-role="listview" id="posts-listview" 
+		data-style="inset" data-template="posts-listview-template" data-bind="source: posts">
+	</ul>    
+    
+	<script id="posts-listview-template" type="text/x-kendo-template">
+    	<a  href='views/postDetails.html'>
+            <div>
+                <div><span>#:username#</span><span>&nbsp;on&nbsp;</span><span>#:kendo.toString(date, "d")#</span></div>
+            	<div><span>#:title#</span></div>
+            	<div><span>#:description#</span></div>
+        	</div>
+        </a>
+	</script>
 </div>

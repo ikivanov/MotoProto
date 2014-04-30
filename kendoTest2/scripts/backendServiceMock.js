@@ -13,7 +13,7 @@
                 if (params.username && params.username == user.username && 
                 		params.password && params.password == user.password) {
                     that.currentToken++;
-					that.token2username[currentToken] = username;
+					that.token2username[that.currentToken] = params.username;
                     
                     defer.resolve({
 		                success : true,
@@ -32,7 +32,7 @@
         },
         
         getPosts: function(params) {
-            var that, 
+            var that = this, 
             	defer = $.Deferred();
             
             if (params.userToken && that.token2username[params.userToken]) {

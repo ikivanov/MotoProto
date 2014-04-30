@@ -4,8 +4,8 @@
     
     LoginViewModel = kendo.data.ObservableObject.extend({
         isLoggedIn: false,
-        username: "",
-        password: "",
+        username: "ikivanov",
+        password: "123",
 
         onLogin: function () {
             var that = this,
@@ -19,9 +19,10 @@
                 return;
             }
             
-            app.backendService.login(username, password).done(function(result) {
+            app.backendService.login({username : username, password : password}).done(function(result) {
                 if (result.success) {
 		            that.set("isLoggedIn", true);
+                    app.userToken = result.userToken;
         		    app.application.navigate("views/main.html");
                     
                 } else {
