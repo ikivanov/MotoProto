@@ -1,7 +1,7 @@
 (function (global) {
     var LoginViewModel,
         app = global.app = global.app || {};
-
+    
     LoginViewModel = kendo.data.ObservableObject.extend({
         isLoggedIn: false,
         username: "",
@@ -18,10 +18,17 @@
 
                 return;
             }
-
-            that.set("isLoggedIn", true);
             
-            app.application.navigate("views/main.html");
+            app.backendService.login(username, password).done(function(result) {
+                if (result.success) {
+		            that.set("isLoggedIn", true);
+        		    app.application.navigate("views/main.html");
+                    
+                } else {
+	                navigator.notification.alert(result.msg,
+    	                function () { }, "Login failed", 'OK');
+                }
+            });
         },
 
         onLogout: function () {
