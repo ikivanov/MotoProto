@@ -18,6 +18,15 @@
             //TODO    
 
             return defer.promise();
+        },
+        
+        getPostDetails: function(params) {
+            var that = this,
+            	defer = $.Deferred();
+
+            //TODO    
+
+            return defer.promise();
         }
     });
 

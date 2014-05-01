@@ -1,7 +1,11 @@
 <div id="post-details-view"
     data-role="view"
     data-title="Trip Details"
-    >
+    data-init="app.postDetailsService.initLocation"
+    data-show="app.postDetailsService.show"
+    data-hide="app.postDetailsService.hide"
+    data-model="app.postDetailsService.viewModel"
+    data-stretch="true">
 
 	<header data-role="header" data-id="jitterz-default-header">
 		<div data-role="navbar">
@@ -10,5 +14,15 @@
 		</div>
 	</header>
     
-    <span>Here you see all the details about a post: Title, Description, Map, Likes, Comments</span>
+    <div>
+    	<span>Here you see all the details about a post: Title, Description, Map, Likes, Comments</span>
+    </div>
+
+    
+    <div id="map-canvas" class="map" data-bind="visible: isGoogleMapsInitialized"></div>
+
+    <div id="no-map" data-bind="invisible: isGoogleMapsInitialized">
+        <h3>Location requires internet connection to display the map.</h3>
+    </div>
+    
 </div>
