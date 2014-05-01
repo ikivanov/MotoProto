@@ -2,11 +2,17 @@
     var map,
         geocoder,
         PostDetailsViewModel,
-        app = global.app = global.app || {};
+        app = global.app = global.app || {},
+    	scope;
 
     PostDetailsViewModel = kendo.data.ObservableObject.extend({
         _lastMarker: null,
         _isLoading: false,
+        
+        username: "",
+        title: "",
+        description: "",
+        date: new Date(),
 
         address: "",
         isGoogleMapsInitialized: false,
@@ -84,13 +90,35 @@
                 map: map,
                 position: position
             });
-        }
-    });
-
-    app.postDetailsService = {
+        },
+        
+        loadPostDetails: function(postId) {
+            var that = this;
+            
+            app.backendService.getPostDetails({userToken : app.userToken, postId : postId}).done(function(result){
+                if(result.success) {
+                    that.setFields(result.post);
+                }
+            });
+        },
+        
+        setFields: function(post) {
+            var that = this;
+            
+            that.set("title", post.title);
+            that.set("description", post.description);
+            that.set("date", kendo.toString(post.date, "d"));
+            that.set("username", post.username);
+        },
+        
+        init: function() {
+            kendo.data.ObservableObject.fn.init.apply(this, [this]);
+            scope = this;
+        },
+    
         initLocation: function () {
             var mapOptions;
-
+            
             if (typeof google === "undefined") {
                 return;
             }
@@ -114,10 +142,15 @@
             app.postDetailsService.viewModel.onNavigateHome.apply(app.postDetailsService.viewModel, []);
         },
 
-        show: function () {
+        show: function (args) {
+            var that = scope;
+            
             if (!app.postDetailsService.viewModel.get("isGoogleMapsInitialized")) {
                 return;
             }
+            
+            var postId = args.view.params.postId;
+            that.loadPostDetails(postId);
 
             //resize the map in case the orientation has been changed while showing other tab
             google.maps.event.trigger(map, "resize");
@@ -127,7 +160,9 @@
             //hide loading mask if user changed the tab as it is only relevant to location tab
             kendo.mobile.application.hideLoading();
         },
+    });
 
+    app.postDetailsService = {
         viewModel: new PostDetailsViewModel()
     };
 }

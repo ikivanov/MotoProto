@@ -1,9 +1,9 @@
 <div id="post-details-view"
     data-role="view"
     data-title="Trip Details"
-    data-init="app.postDetailsService.initLocation"
-    data-show="app.postDetailsService.show"
-    data-hide="app.postDetailsService.hide"
+    data-init="app.postDetailsService.viewModel.initLocation"
+    data-show="app.postDetailsService.viewModel.show"
+    data-hide="app.postDetailsService.viewModel.hide"
     data-model="app.postDetailsService.viewModel"
     data-stretch="true">
 
@@ -15,9 +15,10 @@
 	</header>
     
     <div>
-    	<span>Here you see all the details about a post: Title, Description, Map, Likes, Comments</span>
-    </div>
-
+        <div><span data-bind="text: username"></span><span>&nbsp;on&nbsp;</span><span data-bind="text: date"></span></div>
+        <div><span data-bind="text: title"></span></div>
+        <div><span data-bind="text: description"></span></div>
+	</div>
     
     <div id="map-canvas" class="map" data-bind="visible: isGoogleMapsInitialized"></div>
 

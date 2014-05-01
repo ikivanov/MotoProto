@@ -40,10 +40,10 @@
                     success: true,
                     msg: "OK",
                     posts:[
-                    	{username: "ikivanov", date: users[0].posts[2].date, title: users[0].posts[2].title, description: users[0].posts[2].description, route: users[0].posts[2].route, pics: users[0].posts[2].pics},
-                    	{username: "ikivanov", date: users[0].posts[1].date, title: users[0].posts[1].title, description: users[0].posts[1].description, route: users[0].posts[1].route, pics: users[0].posts[1].pics},
-                    	{username: "vlao85", date: users[1].posts[1].date, title: users[1].posts[1].title, description: users[1].posts[1].description, route: users[1].posts[1].route, pics: users[1].posts[1].pics},
-                    	{username: "kolevstefan", date: users[3].posts[1].date, title: users[3].posts[1].title, description: users[3].posts[1].description, route: users[3].posts[1].route, pics: users[3].posts[1].pics},
+                    	{username: "ikivanov", id: users[0].posts[2].id, date: users[0].posts[2].date, title: users[0].posts[2].title, description: users[0].posts[2].description, route: users[0].posts[2].route, pics: users[0].posts[2].pics},
+                    	{username: "ikivanov", id: users[0].posts[1].id, date: users[0].posts[1].date, title: users[0].posts[1].title, description: users[0].posts[1].description, route: users[0].posts[1].route, pics: users[0].posts[1].pics},
+                    	{username: "vlao85", id: users[1].posts[1].id, date: users[1].posts[1].date, title: users[1].posts[1].title, description: users[1].posts[1].description, route: users[1].posts[1].route, pics: users[1].posts[1].pics},
+                    	{username: "kolevstefan", id: users[3].posts[1].id, date: users[3].posts[1].date, title: users[3].posts[1].title, description: users[3].posts[1].description, route: users[3].posts[1].route, pics: users[3].posts[1].pics},
                     ]
                 });
             } else {
@@ -71,6 +71,7 @@
                 var username = that.token2username[params.userToken];
                 var user = getUserByUsername(username);
                 var post = getPostById(user, params.postId);
+                post.username = username;
 
                 defer.resolve({
                     success: true,
