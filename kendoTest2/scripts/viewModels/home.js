@@ -1,9 +1,14 @@
 (function (global) {
     var HomeViewModel,
-        app = global.app = global.app || {};
+        app = global.app = global.app || {}, scope;
 
     HomeViewModel = kendo.data.ObservableObject.extend({
         posts: [],
+        
+        init: function() {
+            kendo.data.ObservableObject.fn.init.apply(this, [this]);
+            scope = this;
+        },
 
         reload: function() {
             var that = this;
@@ -16,6 +21,11 @@
         
         onReload: function() {
             this.reload();
+        },
+        
+        onShow: function(e) {
+            var that = scope;
+            that.reload();
         }
     });
 

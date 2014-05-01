@@ -2,11 +2,17 @@
 <div id="tabstrip-home"
     data-role="view"
     data-title="Home"
-    data-model="app.homeService.viewModel">
+    data-model="app.homeService.viewModel"
+    data-show="app.homeService.viewModel.onShow">
     
-    <span>This is main view where you see your posts and the posts of the people you follow</span>
-    <input id="reload" type="submit" data-role="button" data-bind="click: onReload" value="Reload" class="login-button" />
-
+	<header data-role="header" data-id="jitterz-default-header">
+		<div data-role="navbar">
+			<a data-role="button" data-align="left" data-icon="refresh" data-bind="click: onReload"></a>
+			<span data-role="view-title"></span>
+		</div>
+	</header>
+    
+    
 	<ul data-role="listview" id="posts-listview" 
 		data-style="inset" data-template="posts-listview-template" data-bind="source: posts">
 	</ul>    
