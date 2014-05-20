@@ -3,30 +3,34 @@
         appServer: '77.70.99.10:3000',
         
         login: function(params) {
-            var that = this,
-            	defer = $.Deferred();
-
-            //TODO
-
-            return defer.promise();
+            var that = this;
+            
+			return $.ajax("http://" + that.appServer + "/login", 
+				{
+					type: "POST", 
+					contentType: "application/json",
+					data: JSON.stringify({username: params.username, password: params.password})
+				});
         },
         
         getPosts: function(params) {
-            var that = this,
-            	defer = $.Deferred();
+            var that = this;
 
-            //TODO    
-
-            return defer.promise();
+			return $.ajax("http://" + that.appServer + "/" + params.userToken + "/posts", 
+				{
+					type: "GET", 
+					contentType: "application/json"
+				});
         },
         
         getPostDetails: function(params) {
-            var that = this,
-            	defer = $.Deferred();
+            var that = this;
 
-            //TODO    
-
-            return defer.promise();
+			return $.ajax("http://" + that.appServer + "/" + params.userToken + "/post/" + params.postId, 
+				{
+					type: "GET", 
+					contentType: "application/json"
+				});
         }
     });
 

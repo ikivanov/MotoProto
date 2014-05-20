@@ -1,6 +1,6 @@
 (function (global) {
     var app = global.app = global.app || {};
-    var mockBackend = true;
+    var mockBackend = false;
 
     document.addEventListener('deviceready', function () {
         navigator.splashscreen.hide();
